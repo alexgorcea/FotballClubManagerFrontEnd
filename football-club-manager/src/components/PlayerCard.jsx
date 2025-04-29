@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
+import { Link } from 'react-router-dom';
 
 function PlayerCard({player}){
     const placeholderImage = "https://via.placeholder.com/300x300";
@@ -21,7 +22,7 @@ function PlayerCard({player}){
                 <ListGroup.Item>Foot: {player.foot}</ListGroup.Item>
             </ListGroup>
             <Card.Body>
-                <Button variant="primary">See Market Value</Button>
+                <Button variant="primary" as={Link} to={`/players/${player.playerId}?playerName=${encodeURIComponent(player.name)}`}>See Market Value</Button>
             </Card.Body>
         </Card>
       );

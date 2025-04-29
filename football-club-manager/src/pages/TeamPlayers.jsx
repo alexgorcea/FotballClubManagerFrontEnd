@@ -10,7 +10,7 @@ function TeamPlayers(){
     const [teamPlayers,setTeamPlayers] = useState();
 
     const {teamId} = useParams();
-    
+
     const location = useLocation();
     const teamName = new URLSearchParams(location.search).get('teamName');
 
@@ -18,7 +18,6 @@ function TeamPlayers(){
         try
         {
             const response = await api.get(`/players/${teamId}`);
-            console.log(response.data)
             setTeamPlayers(response.data);
         }catch(e){
             console.log(e);
@@ -27,7 +26,7 @@ function TeamPlayers(){
 
     useEffect(() => {
         getTeamPlayers();
-    }, [])
+    }, []);
 
     return(
         <Container fluid>

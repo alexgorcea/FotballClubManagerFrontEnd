@@ -6,6 +6,7 @@ import Home from './pages/Home'
 import Teams from './pages/Teams'
 import Layout from './layout/Layout'
 import TeamPlayers from './pages/TeamPlayers';
+import MarketValue from './pages/MarketValue';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
       {
         path : "teams/:teamId",
         element : <TeamPlayers/>
+      },
+
+      {
+        path : "players/:playerId",
+        element : <MarketValue />
       }
 
     ]

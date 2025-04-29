@@ -8,10 +8,9 @@ function TeamCard({team}){
 
     return (
         <Card className="text-center" style={{ width: '18rem' }}>
+            <Card.Header as="h5" className="bg-secondary text-white">{team.name}</Card.Header>
             <Card.Body>
                 <Image src={team.image} />
-                <p></p>
-                <Card.Title>{team.name}</Card.Title>
             </Card.Body>
             <ListGroup className="list-group-flush">
                 <ListGroup.Item>President: {team.president}</ListGroup.Item>
