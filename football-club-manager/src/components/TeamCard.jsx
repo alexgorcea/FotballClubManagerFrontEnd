@@ -2,12 +2,14 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
+import {Link} from 'react-router-dom';
 
 function TeamCard({team}){
+
     return (
         <Card className="text-center" style={{ width: '18rem' }}>
             <Card.Body>
-                <Image src={team.image} rounderCircle/>
+                <Image src={team.image} />
                 <p></p>
                 <Card.Title>{team.name}</Card.Title>
             </Card.Body>
@@ -17,7 +19,7 @@ function TeamCard({team}){
                 <ListGroup.Item>Market value: {team.currentMarketValue} EUR</ListGroup.Item>
             </ListGroup>
             <Card.Body>
-                <Button variant="primary">See Players</Button>
+                <Button variant="primary" as = {Link} to = {`/teams/${team.id}?teamName=${encodeURIComponent(team.name)}`}>See Players</Button>
             </Card.Body>
         </Card>
       );

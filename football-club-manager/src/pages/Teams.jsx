@@ -12,7 +12,6 @@ function Teams(){
         try
         {
             const response = await api.get('/teams');
-            console.log(response.data);
             setTeams(response.data);
 
         }catch(e){
@@ -26,10 +25,10 @@ function Teams(){
 
     return(
         <Container fluid>
-            <h2 className="mb-4">Teams</h2>
-            <Row>
+            <h2 className="d-flex justify-content-center">Teams</h2>
+            <Row className="g-4 justify-content-center">
                 {Array.isArray(teams) && teams.map(team => (
-                    <Col>
+                    <Col key = {team.id} className="d-flex justify-content-center" xs={12} sm={6} md={4} lg={3}>
                         <TeamCard key = {team.id} team={team} />
                     </Col>
                 ))}
