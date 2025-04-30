@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image';
 import {Link} from 'react-router-dom';
 
 function TeamCard({team}){
-
+    const formattedCurrentMarketValue = new Intl.NumberFormat('de-DE').format(team.currentMarketValue);
     return (
         <Card className="text-center" style={{ width: '18rem' }}>
             <Card.Header as="h5" className="bg-secondary text-white">{team.name}</Card.Header>
@@ -13,9 +13,9 @@ function TeamCard({team}){
                 <Image src={team.image} />
             </Card.Body>
             <ListGroup className="list-group-flush">
-                <ListGroup.Item>President: {team.president}</ListGroup.Item>
-                <ListGroup.Item>Stadium: {team.stadiumName}</ListGroup.Item>
-                <ListGroup.Item>Market value: {team.currentMarketValue} EUR</ListGroup.Item>
+                <ListGroup.Item>President: <b>{team.president}</b></ListGroup.Item>
+                <ListGroup.Item>Stadium: <b>{team.stadiumName}</b></ListGroup.Item>
+                <ListGroup.Item>Market value: <b>{formattedCurrentMarketValue} €</b></ListGroup.Item>
             </ListGroup>
             <Card.Body>
                 <Button variant="primary" as = {Link} to = {`/teams/${team.id}?teamName=${encodeURIComponent(team.name)}`}>See Players</Button>

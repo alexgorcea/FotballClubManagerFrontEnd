@@ -1,14 +1,12 @@
 import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
-import { Link } from 'react-router-dom';
 
-function PlayerCard({player}){
+function PlayerDetailsCard({player}){
     const placeholderImage = "https://via.placeholder.com/300x300";
 
     return (
-        <Card className="text-center" style={{ width: '18rem' }}>
+        <Card className="text-center h-100">
             <Card.Body>
                 <Image src={player.imageUrl || placeholderImage}/>
                 <p></p>
@@ -17,12 +15,13 @@ function PlayerCard({player}){
             <ListGroup className="list-group-flush">
                 <ListGroup.Item>Position: <b>{player.position}</b></ListGroup.Item>
                 <ListGroup.Item>Date of Birth: <b>{player.dateOfBirth}</b></ListGroup.Item>
+                <ListGroup.Item>Citizenship: <b>{player.nationality}</b></ListGroup.Item>
+                <ListGroup.Item>Age: <b>{player.age}</b></ListGroup.Item>
+                <ListGroup.Item>Height: <b>{player.height} cm</b></ListGroup.Item>
+                <ListGroup.Item>Foot: <b>{player.foot}</b></ListGroup.Item>
             </ListGroup>
-            <Card.Body>
-                <Button variant="primary" as={Link} to={`/players/${player.playerId}`} state={{player}}>Details</Button>
-            </Card.Body>
         </Card>
       );
 }
 
-export default PlayerCard
+export default PlayerDetailsCard

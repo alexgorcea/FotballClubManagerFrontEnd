@@ -1,4 +1,5 @@
 import { Line } from 'react-chartjs-2';
+import Card  from 'react-bootstrap/Card';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -9,6 +10,7 @@ import {
   Tooltip,
   Legend
 } from 'chart.js';
+import { Container } from 'react-bootstrap';
   
 ChartJS.register(
   CategoryScale,
@@ -72,7 +74,16 @@ function MarketValueChart({marketValueHistory}){
     ]
   };
 
-  return <Line options={options} data={data} />;
+  return (
+    <Card className="text-center h-100" >
+      <Card.Header as="h5" className="bg-secondary text-light">
+            Market Value History 
+      </Card.Header>
+      <Card.Body>
+        <Line options={options} data={data} />
+      </Card.Body>
+    </Card>
+  );
 }
 
 export default MarketValueChart
