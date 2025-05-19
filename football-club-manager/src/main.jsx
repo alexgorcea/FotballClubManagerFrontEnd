@@ -7,6 +7,9 @@ import Teams from './pages/Teams'
 import Layout from './layout/Layout'
 import TeamPlayers from './pages/TeamPlayers';
 import Details from './pages/Details';
+import Matches from './pages/Matches';
+import CreateMatch from './pages/CreateMatch';
+import EditMatch from './pages/EditMatch';
 
 const router = createBrowserRouter([
   {
@@ -32,8 +35,20 @@ const router = createBrowserRouter([
       {
         path : "players/:playerId",
         element : <Details />
+      },
+      {
+        path : "matches",
+        element : <Matches /> 
+      },
+      {
+        path : "matches/create",
+        element : <CreateMatch />
+      },
+      {
+        path : "matches/edit/:matchId",
+        element : <EditMatch />
       }
-
+    
     ]
 
   }
