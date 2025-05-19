@@ -2,6 +2,7 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
+import Stack from 'react-bootstrap/Stack'
 import {Link} from 'react-router-dom';
 
 function TeamCard({team}){
@@ -18,7 +19,9 @@ function TeamCard({team}){
                 <ListGroup.Item>Market value: <b>{formattedCurrentMarketValue} €</b></ListGroup.Item>
             </ListGroup>
             <Card.Body>
-                <Button variant="primary" as = {Link} to = {`/teams/${team.id}?teamName=${encodeURIComponent(team.name)}`}>See Players</Button>
+                <Stack gap={2}>
+                    <Button variant="primary" as = {Link} to = {`/teams/${team.id}?teamName=${encodeURIComponent(team.name)}`}>See Players</Button>
+                </Stack>
             </Card.Body>
         </Card>
       );

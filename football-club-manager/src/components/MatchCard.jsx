@@ -1,34 +1,34 @@
-import React, { useState, useEffect } from 'react';
-import { Card, ListGroup, Badge, Row, Col, Image, Button } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { Card, ListGroup, Stack, Row, Col, Image, Button } from 'react-bootstrap';
 import api from '../api/axiosConfig';
 
-function MatchCard({ match }){
+function MatchCard({ match }) {
 
-  const [homeTeam,setHomeTeam] = useState();
-  const [awayTeam,setAwayTeam] = useState();
+  const [homeTeam, setHomeTeam] = useState();
+  const [awayTeam, setAwayTeam] = useState();
 
   const getHomeTeam = async () => {
-    try{
-        const response1 = await api.get(`/teams/${match.homeTeamId}`);
-        setHomeTeam(response1.data);
-    }catch(e){
-        console.log(e);
+    try {
+      const response1 = await api.get(`/teams/${match.homeTeamId}`);
+      setHomeTeam(response1.data);
+    } catch (e) {
+      console.log(e);
     }
   }
 
   const getAwayTeam = async () => {
-    try{
-        const response2 = await api.get(`/teams/${match.awayTeamId}`);
-        setAwayTeam(response2.data);
-    }catch(e){
-        console.log(e);
+    try {
+      const response2 = await api.get(`/teams/${match.awayTeamId}`);
+      setAwayTeam(response2.data);
+    } catch (e) {
+      console.log(e);
     }
   }
 
   useEffect(() => {
     getHomeTeam();
     getAwayTeam();
-  },[]);
+  }, []);
 
   const deleteMatch = async () => {
     if (!window.confirm("Are you sure you want to delete this match?")) return;
@@ -72,11 +72,11 @@ function MatchCard({ match }){
         </Card.Title>
       </Card.Body>
       <ListGroup className="list-group-flush">
-          <ListGroup.Item>{formattedDate}</ListGroup.Item>
-          <ListGroup.Item><strong>Winner Prize:</strong> ${match.prize.toLocaleString()}</ListGroup.Item>
+        <ListGroup.Item>{formattedDate}</ListGroup.Item>
+        <ListGroup.Item><strong>Winner Prize:</strong> ${match.prize.toLocaleString()}</ListGroup.Item>
       </ListGroup>
       <Card.Body>
-        <div className="d-flex flex-column align-items-stretch">
+        <Stack gap={2}>
           {match.reviewId ? (
             <Button className="mb-2" variant='primary' href={`/reviews/${match.reviewId}`}>View Review</Button>
           ) : (
@@ -84,7 +84,7 @@ function MatchCard({ match }){
           )}
           <Button className="mb-2" variant='primary' href={`/matches/edit/${match.matchId}`}>Edit Match</Button>
           <Button variant='danger' onClick={deleteMatch}>Delete</Button>
-        </div>
+        </Stack>
       </Card.Body>
     </Card>
   );
