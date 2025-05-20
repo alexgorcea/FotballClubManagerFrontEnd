@@ -30,21 +30,17 @@ function Details(){
 
     return(
         <Container className="my-5" fluid>
-            <Row className="g-4 align-items-stretch">
-                <Col md={3} className="d-flex">
-                    <div className="w-100">
-                        <PlayerDetailsCard player={player} />
-                    </div>
+            <Row className="g-4 justify-content-center">
+                <Col xs="auto">
+                    <PlayerDetailsCard player={player} />
                 </Col> 
-                <Col md={7} className="d-flex">
-                    <div className="w-100">
-                        <MarketValueChart marketValueHistory={marketValueData?.marketValueHistory || []}/>
-                    </div>
+                <Col xs="auto">
+                    <PlayerRankingCard ranking={marketValueData?.ranking || []} currentMarketValue={marketValueData?.marketValue || []} />
                 </Col>
-                <Col md={2} className="d-flex">
-                    <div className="w-100">
-                        <PlayerRankingCard ranking={marketValueData?.ranking || []} currentMarketValue={marketValueData?.marketValue || []} />
-                    </div>
+            </Row>
+            <Row className="mt-4">
+                <Col>
+                    <MarketValueChart marketValueHistory={marketValueData?.marketValueHistory || []}/>
                 </Col>
             </Row>
         </Container>

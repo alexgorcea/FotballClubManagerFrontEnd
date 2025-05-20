@@ -89,7 +89,7 @@ function EditMatch() {
 
   return (
     <Container>
-        <Card className="p-4 shadow-sm">
+        <Card className="p-4 shadow-sm custom-dark-card">
         <h3 className="text-center mb-4">Edit Match</h3>
         <Form onSubmit={handleSubmit}>
             <Row>

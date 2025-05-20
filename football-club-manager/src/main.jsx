@@ -10,6 +10,9 @@ import Details from './pages/Details';
 import Matches from './pages/Matches';
 import CreateMatch from './pages/CreateMatch';
 import EditMatch from './pages/EditMatch';
+import Review from './pages/Review';
+import CreateReview from './pages/CreateReview';
+import '../index.css'
 
 const router = createBrowserRouter([
   {
@@ -47,6 +50,14 @@ const router = createBrowserRouter([
       {
         path : "matches/edit/:matchId",
         element : <EditMatch />
+      },
+      {
+        path : "review/:matchId",
+        element : <Review />
+      },
+      {
+        path : "review/createReview/:matchId",
+        element : <CreateReview />
       }
     
     ]

@@ -5,24 +5,24 @@ import logo from '../assets/laliga.png';
 
 function Header() {
   return (
-    <Navbar bg="secondary" variant="dark" expand="lg" sticky="top">
-      <Container>
+    <Navbar bg="secondary" variant="dark" expand="lg" sticky="top" className="shadow-sm px-3">
+      <Container fluid>
         <Navbar.Brand href="/" className="d-flex align-items-center gap-2">
           <img
             alt="La Liga Logo"
             src={logo}
-            width="50"
-            height="50"
-            className="d-inline-block align-top"
+            width="40"
+            height="40"
+            className="d-inline-block align-middle"
           />
           <span className="fw-bold fs-4 text-light">LaLiga</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link href="/" className="text-light px-3">Home</Nav.Link>
-            <Nav.Link href="/teams" className="text-light px-3">Teams</Nav.Link>
-            <Nav.Link href="/matches" className="text-light px-3">Matches</Nav.Link>
+          <Nav className="ms-auto gap-3">
+            <Nav.Link href="/" className="text-light">Home</Nav.Link>
+            <Nav.Link href="/teams" className="text-light">Teams</Nav.Link>
+            <Nav.Link href="/matches" className="text-light">Matches</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

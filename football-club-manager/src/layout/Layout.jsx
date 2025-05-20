@@ -7,11 +7,13 @@ export default function Layout() {
   return (
     <>
       <Background />
+      <div className="d-flex flex-column min-vh-100">
         <Header />
-        <main>
+        <main className="flex-grow-1 py-4">
           <Outlet />
         </main>
         <Footer />
+      </div>
     </>
   )
 }

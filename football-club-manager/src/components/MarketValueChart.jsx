@@ -74,10 +74,8 @@ function MarketValueChart({marketValueHistory}){
   };
 
   return (
-    <Card className="text-center h-100" >
-      <Card.Header as="h5" className="bg-secondary text-light">
-            Market Value History 
-      </Card.Header>
+    <Card className="shadow-sm rounded-4 border-0 mx-auto" style={{ width: '800px', maxWidth: '100%'}}>
+      <Card.Header className="bg-secondary text-white rounded-top-4 text-center fs-5">Market Value Over Time</Card.Header>
       <Card.Body>
         <Line options={options} data={data} />
       </Card.Body>

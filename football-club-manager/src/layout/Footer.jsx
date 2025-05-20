@@ -3,9 +3,11 @@ import Navbar from 'react-bootstrap/Navbar';
 
 function Footer() {
   return (
-    <Navbar bg="secondary" variant="dark" className="mt-auto">
-      <Container className="justify-content-center py-3">
-        <span className="text-light">&copy; {new Date().getFullYear()} LaLiga. All rights reserved.</span>
+    <Navbar bg="secondary" variant="dark" className="mt-auto py-3 shadow-sm">
+      <Container className="justify-content-center">
+        <span className="text-light small text-center">
+          &copy; {new Date().getFullYear()} LaLiga. All rights reserved.
+        </span>
       </Container>
     </Navbar>
   );
