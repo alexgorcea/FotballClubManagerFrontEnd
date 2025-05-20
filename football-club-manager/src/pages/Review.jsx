@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { Card, ListGroup, Badge, Row, Col } from 'react-bootstrap';
+import { Card, ListGroup, Badge, Row, Col, Image } from 'react-bootstrap';
 import api from '../api/axiosConfig';
 
 function Review() {
@@ -34,26 +34,34 @@ function Review() {
       </Card.Header>
       <Card.Body className="p-4">
         <Row className="justify-content-center mb-4">
-          <Col xs={12} md={8} lg={4}>
-            <h5 className="text-center mb-3">Result</h5>
-            <ListGroup variant="flush">
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span className="fw-semibold">{matchTeams.homeTeam.name} Score</span>
-                <Badge bg="secondary">{review.homeTeamScore}</Badge>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span className="fw-semibold">{matchTeams.awayTeam.name} Score</span>
-                <Badge bg="secondary">{review.awayTeamScore}</Badge>
-              </ListGroup.Item>
-              <ListGroup.Item className="d-flex justify-content-between align-items-center">
-                <span className="fw-semibold">Winner Team</span>
-                <Badge bg="success">
-                  {(matchTeams.homeTeam.id === review.winnerTeamId)
-                    ? matchTeams.homeTeam.name
-                    : matchTeams.awayTeam.name}
-                </Badge>
-              </ListGroup.Item>
-            </ListGroup>
+          <Col xs={12} md={8} lg={6}>
+            <Row className="align-items-center text-center">
+            <Col>
+              {matchTeams.homeTeam && (
+                <>
+                  <Image src={matchTeams.homeTeam.image} alt={matchTeams.homeTeam.name} height={50} fluid className="mb-1"/>
+                  <div className="fw-semibold">{matchTeams.homeTeam.name}</div>
+                </>
+              )}
+            </Col>
+            <Col>
+              <Badge bg="secondary">{review.homeTeamScore}</Badge>
+            </Col>
+            <Col xs="auto">
+              <span className="fs-2 fw-bold text-muted">-</span>
+            </Col>
+            <Col>
+            <Badge bg="secondary">{review.awayTeamScore}</Badge>
+            </Col>
+            <Col>
+              {matchTeams.awayTeam && (
+                <>
+                  <Image src={matchTeams.awayTeam.image} alt={matchTeams.awayTeam.name} height={50} fluid className="mb-1" />
+                  <div className="fw-semibold">{matchTeams.awayTeam.name}</div>
+                </>
+              )}
+          </Col>
+          </Row>
           </Col>
         </Row>
         <Row className="justify-content-center mb-4">

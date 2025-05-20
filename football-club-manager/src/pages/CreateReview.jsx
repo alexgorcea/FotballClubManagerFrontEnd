@@ -37,7 +37,7 @@ function CreateReview() {
     try {
       const response = await api.post(`/reviews/add-to/${matchId}`, formData);
       alert('Review created!');
-      navigate(`/review/${matchId}`);
+      navigate(`/review/${matchId}`, { state: { matchTeams } });
     } catch (error) {
       console.error(error);
       alert('Error creating review.');

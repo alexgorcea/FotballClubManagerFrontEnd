@@ -49,6 +49,19 @@ function MatchCard({ match }) {
     }
   };
 
+  const deleteReview = async (reviewId) => {
+    if (!window.confirm("Are you sure you want to delete this review?")) return;
+
+    try{
+      await api.delete(`/reviews/delete/${reviewId}`)
+      alert("Review deleted successfully!");
+      window.location.reload();
+    } catch (e) {
+      console.error(e);
+      alert("Failed to delete match.");
+    }
+  }
+
 
   const formattedDate = new Date(match.date).toLocaleDateString();
 
@@ -60,13 +73,7 @@ function MatchCard({ match }) {
             <Col>
               {homeTeam && (
                 <>
-                  <Image
-                    src={homeTeam.image}
-                    alt={homeTeam.name}
-                    height={50}
-                    fluid
-                    className="mb-1"
-                  />
+                  <Image src={homeTeam.image} alt={homeTeam.name} height={50} fluid className="mb-1"/>
                   <div className="fw-semibold">{homeTeam.name}</div>
                 </>
               )}
@@ -77,13 +84,7 @@ function MatchCard({ match }) {
             <Col>
               {awayTeam && (
                 <>
-                  <Image
-                    src={awayTeam.image}
-                    alt={awayTeam.name}
-                    height={50}
-                    fluid
-                    className="mb-1"
-                  />
+                  <Image src={awayTeam.image} alt={awayTeam.name} height={50} fluid className="mb-1" />
                   <div className="fw-semibold">{awayTeam.name}</div>
                 </>
               )}
@@ -104,30 +105,15 @@ function MatchCard({ match }) {
       <Card.Body>
         <Stack gap={2}>
           {match.reviewId ? (
-            <Button
-              variant="outline-primary"
-              as={Link}
-              to={`/review/${match.matchId}`}
-              state={{ matchTeams }}
-            >
-              View Review
-            </Button>
+            <>
+              <Button variant="outline-primary" as={Link} to={`/review/${match.matchId}`} state={{ matchTeams }}>View Review</Button>
+              <Button variant="outline-danger" onClick={() => deleteReview(match.reviewId)}>Delete Review</Button>
+            </>
           ) : (
-            <Button
-              variant="primary"
-              as={Link}
-              to={`/review/createReview/${match.matchId}`}
-              state={{ matchTeams }}
-            >
-              Create Review
-            </Button>
+            <Button variant="primary" as={Link} to={`/review/createReview/${match.matchId}`} state={{ matchTeams }}>Create Review</Button>
           )}
-          <Button variant="outline-secondary" as={Link} to={`/matches/edit/${match.matchId}`}>
-            Edit Match
-          </Button>
-          <Button variant="outline-danger" onClick={deleteMatch}>
-            Delete
-          </Button>
+          <Button variant="outline-secondary" as={Link} to={`/matches/edit/${match.matchId}`}>Edit Match</Button>
+          <Button variant="outline-danger" onClick={deleteMatch}>Delete Match</Button>
         </Stack>
       </Card.Body>
     </Card>
