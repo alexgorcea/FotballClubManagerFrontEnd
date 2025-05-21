@@ -35,7 +35,7 @@ function CreateReview() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await api.post(`/reviews/add-to/${matchId}`, formData);
+      await api.post(`/reviews/add-to/${matchId}`, formData);
       alert('Review created!');
       navigate(`/review/${matchId}`, { state: { matchTeams } });
     } catch (error) {
@@ -44,35 +44,61 @@ function CreateReview() {
     }
   };
 
+  const formatLabel = (label) => label.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/\b\w/g, char => char.toUpperCase());
+
+
   return (
-    <Card className="m-4 p-4">
-      <Card.Title>Create Review</Card.Title>
+    <Card className="shadow-sm mx-auto p-4" style={{ maxWidth: '600px' }}>
+      <Card.Title className="fs-4 fw-bold text-center mb-4">
+        Create Review
+      </Card.Title>
+
       <Form onSubmit={handleSubmit}>
         <Row>
           <Col>
             <Form.Group className="mb-3">
               <Form.Label>{matchTeams.homeTeam.name} Score</Form.Label>
-              <Form.Control type="number" value={formData.homeTeamScore}
-                onChange={(e) => handleChange(null, 'homeTeamScore', e.target.value)} />
+              <Form.Control
+                type="number"
+                value={formData.homeTeamScore}
+                onChange={(e) => handleChange(null, 'homeTeamScore', e.target.value)}
+              />
             </Form.Group>
+
             <Form.Group className="mb-3">
               <Form.Label>{matchTeams.awayTeam.name} Score</Form.Label>
-              <Form.Control type="number" value={formData.awayTeamScore}
-                onChange={(e) => handleChange(null, 'awayTeamScore', e.target.value)} />
+              <Form.Control
+                type="number"
+                value={formData.awayTeamScore}
+                onChange={(e) => handleChange(null, 'awayTeamScore', e.target.value)}
+              />
             </Form.Group>
           </Col>
+        </Row>
+
+        <hr className="border-light" />
+
+        <Row>
           <Col>
-            <h5>Spectators</h5>
-            {Object.keys(formData.spectators).map(key => (
+            <h5 className="text-center mb-3">Spectators</h5>
+            {Object.keys(formData.spectators).map((key) => (
               <Form.Group className="mb-2" key={key}>
-                <Form.Label>{key}</Form.Label>
-                <Form.Control type="number" value={formData.spectators[key]}
-                  onChange={(e) => handleChange('spectators', key, e.target.value)} />
+                <Form.Label>{formatLabel(key)}</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={formData.spectators[key]}
+                  onChange={(e) => handleChange('spectators', key, e.target.value)}
+                />
               </Form.Group>
             ))}
           </Col>
         </Row>
-        <Button className="mt-3" type="submit">Submit Review</Button>
+
+        <div className="text-center mt-4">
+          <Button type="submit" variant="primary" className="px-4">
+            Submit Review
+          </Button>
+        </div>
       </Form>
     </Card>
   );

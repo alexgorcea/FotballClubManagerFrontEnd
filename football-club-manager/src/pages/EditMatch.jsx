@@ -89,7 +89,7 @@ function EditMatch() {
 
   return (
     <Container>
-        <Card className="p-4 shadow-sm custom-dark-card">
+        <Card className="shadow-sm mx-auto p-4" style={{ maxWidth: '600px' }}>
         <h3 className="text-center mb-4">Edit Match</h3>
         <Form onSubmit={handleSubmit}>
             <Row>
@@ -144,7 +144,7 @@ function EditMatch() {
             </Row>
 
             <div className="text-center mt-4">
-            <Button variant="primary" type="submit">Save Changes</Button>
+            <Button variant="primary" type="submit">Update Match</Button>
             </div>
         </Form>
         </Card>

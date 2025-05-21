@@ -69,7 +69,7 @@ function  CreateMatch(){
 
   return (
     <Container>
-      <Card className="p-4 shadow-sm">
+      <Card className="shadow-sm mx-auto p-4" style={{ maxWidth: '600px' }}>
         <h3 className="text-center mb-4">Create New Match</h3>
         <Form onSubmit={handleSubmit}>
           <Row>

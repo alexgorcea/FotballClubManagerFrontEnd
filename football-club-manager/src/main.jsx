@@ -12,6 +12,7 @@ import CreateMatch from './pages/CreateMatch';
 import EditMatch from './pages/EditMatch';
 import Review from './pages/Review';
 import CreateReview from './pages/CreateReview';
+import EditReview from './pages/EditReview';
 import '../index.css'
 
 const router = createBrowserRouter([
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path : "review/createReview/:matchId",
         element : <CreateReview />
+      },
+      {
+        path : "review/editReview/:matchId",
+        element : <EditReview />
       }
     
     ]

@@ -4,7 +4,6 @@ import api from '../api/axiosConfig';
 import { Link } from 'react-router-dom';
 
 function MatchCard({ match }) {
-
   const [homeTeam, setHomeTeam] = useState();
   const [awayTeam, setAwayTeam] = useState();
 
@@ -15,7 +14,7 @@ function MatchCard({ match }) {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   const getAwayTeam = async () => {
     try {
@@ -24,7 +23,7 @@ function MatchCard({ match }) {
     } catch (e) {
       console.log(e);
     }
-  }
+  };
 
   useEffect(() => {
     getHomeTeam();
@@ -32,9 +31,9 @@ function MatchCard({ match }) {
   }, []);
 
   const matchTeams = {
-    homeTeam: homeTeam,
-    awayTeam: awayTeam
-  }
+    homeTeam,
+    awayTeam
+  };
 
   const deleteMatch = async () => {
     if (!window.confirm("Are you sure you want to delete this match?")) return;
@@ -49,21 +48,11 @@ function MatchCard({ match }) {
     }
   };
 
-  const deleteReview = async (reviewId) => {
-    if (!window.confirm("Are you sure you want to delete this review?")) return;
+  const matchDate = new Date(match.date);
+  const now = new Date();
+  const hasPassed = matchDate < now;
 
-    try{
-      await api.delete(`/reviews/delete/${reviewId}`)
-      alert("Review deleted successfully!");
-      window.location.reload();
-    } catch (e) {
-      console.error(e);
-      alert("Failed to delete match.");
-    }
-  }
-
-
-  const formattedDate = new Date(match.date).toLocaleDateString();
+  const formattedDate = matchDate.toLocaleDateString();
 
   return (
     <Card className="shadow-sm rounded-4 border-0 h-100">
@@ -73,7 +62,7 @@ function MatchCard({ match }) {
             <Col>
               {homeTeam && (
                 <>
-                  <Image src={homeTeam.image} alt={homeTeam.name} height={50} fluid className="mb-1"/>
+                  <Image src={homeTeam.image} alt={homeTeam.name} height={50} fluid className="mb-1" />
                   <div className="fw-semibold">{homeTeam.name}</div>
                 </>
               )}
@@ -92,6 +81,7 @@ function MatchCard({ match }) {
           </Row>
         </Card.Title>
       </Card.Body>
+
       <ListGroup className="list-group-flush">
         <ListGroup.Item className="d-flex justify-content-between">
           <span className="text-muted">Date</span>
@@ -102,22 +92,47 @@ function MatchCard({ match }) {
           <span className="fw-medium">${match.prize.toLocaleString()}</span>
         </ListGroup.Item>
       </ListGroup>
+
       <Card.Body>
         <Stack gap={2}>
-          {match.reviewId ? (
-            <>
-              <Button variant="outline-primary" as={Link} to={`/review/${match.matchId}`} state={{ matchTeams }}>View Review</Button>
-              <Button variant="outline-danger" onClick={() => deleteReview(match.reviewId)}>Delete Review</Button>
-            </>
+          {hasPassed ? (
+            match.reviewId ? (
+              <Button
+                variant="outline-primary"
+                as={Link}
+                to={`/review/${match.matchId}`}
+                state={{ matchTeams }}
+              >
+                View Review
+              </Button>
+            ) : (
+              <Button
+                variant="primary"
+                as={Link}
+                to={`/review/createReview/${match.matchId}`}
+                state={{ matchTeams }}
+              >
+                Create Review
+              </Button>
+            )
           ) : (
-            <Button variant="primary" as={Link} to={`/review/createReview/${match.matchId}`} state={{ matchTeams }}>Create Review</Button>
+            <>
+              <Button
+                variant="outline-secondary"
+                as={Link}
+                to={`/matches/edit/${match.matchId}`}
+              >
+                Edit Match
+              </Button>
+              <Button variant="outline-danger" onClick={deleteMatch}>
+                Delete Match
+              </Button>
+            </>
           )}
-          <Button variant="outline-secondary" as={Link} to={`/matches/edit/${match.matchId}`}>Edit Match</Button>
-          <Button variant="outline-danger" onClick={deleteMatch}>Delete Match</Button>
         </Stack>
       </Card.Body>
     </Card>
   );
-};
+}
 
 export default MatchCard;
