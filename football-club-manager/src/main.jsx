@@ -13,6 +13,7 @@ import EditMatch from './pages/EditMatch';
 import Review from './pages/Review';
 import CreateReview from './pages/CreateReview';
 import EditReview from './pages/EditReview';
+import StadiumCard from './components/StadiumCard';
 import '../index.css'
 
 const router = createBrowserRouter([
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
       {
         path : "review/editReview/:matchId",
         element : <EditReview />
+      },
+      {
+        path : "matches/tickets/:matchId",
+        element : <StadiumCard />
       }
     
     ]

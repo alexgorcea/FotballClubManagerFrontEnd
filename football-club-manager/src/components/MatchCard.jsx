@@ -97,36 +97,15 @@ function MatchCard({ match }) {
         <Stack gap={2}>
           {hasPassed ? (
             match.reviewId ? (
-              <Button
-                variant="outline-primary"
-                as={Link}
-                to={`/review/${match.matchId}`}
-                state={{ matchTeams }}
-              >
-                View Review
-              </Button>
+              <Button variant="outline-primary" as={Link} to={`/review/${match.matchId}`} state={{ matchTeams }}>View Review</Button>
             ) : (
-              <Button
-                variant="primary"
-                as={Link}
-                to={`/review/createReview/${match.matchId}`}
-                state={{ matchTeams }}
-              >
-                Create Review
-              </Button>
+              <Button variant="outline-primary" as={Link} to={`/review/createReview/${match.matchId}`} state={{ matchTeams }}>Create Review</Button>
             )
           ) : (
             <>
-              <Button
-                variant="outline-secondary"
-                as={Link}
-                to={`/matches/edit/${match.matchId}`}
-              >
-                Edit Match
-              </Button>
-              <Button variant="outline-danger" onClick={deleteMatch}>
-                Delete Match
-              </Button>
+              <Button variant="outline-primary" as={Link} to={`/matches/edit/${match.matchId}`}>Buy Tickets</Button>
+              <Button variant="outline-secondary" as={Link} to={`/matches/edit/${match.matchId}`}>Edit Match</Button>
+              <Button variant="outline-danger" onClick={deleteMatch}>Delete Match</Button>
             </>
           )}
         </Stack>

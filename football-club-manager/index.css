@@ -12,3 +12,53 @@
 .list-group-item {
     background-color: transparent !important;
 }
+
+.trapezoid-horizontal {
+  width: 420px;
+  height: 100px;
+  color: white;
+  font-weight: bold;
+  clip-path: polygon(15% 100%, 85% 100%, 100% 0%, 0% 0%);
+}
+
+.trapezoid-vertical {
+  width: 400px;
+  height: 190px;
+  color: white;
+  font-weight: bold;
+  clip-path: polygon(15% 100%, 85% 100%, 100% 0%, 0% 0%);
+
+}
+
+.trapezoid-horizontal.rotate-down {
+  transform: rotate(180deg);
+}
+
+.rotate-left {
+  transform: rotate(-90deg);
+}
+
+.rotate-right {
+  transform: rotate(90deg);
+}
+
+.vip-class {
+  width: 300px;
+  height: 50px;
+  background-color: gold;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  transition: transform 0.2s;
+}
+
+.vip-class:hover {
+  background-color: gold;
+  transform: scale(1.05);
+}
+
+
+
+
+
