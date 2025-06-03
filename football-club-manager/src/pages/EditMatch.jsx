@@ -20,6 +20,13 @@ function EditMatch() {
       southSeats: '',
       westSeats: '',
       vipSeats: ''
+    },
+    ticketSold: {
+      northSeats: 0,
+      eastSeats: 0,
+      southSeats: 0,
+      westSeats: 0,
+      vipSeats: 0
     }
   });
 
@@ -44,7 +51,14 @@ function EditMatch() {
       setMatch({
         ...data,
         date: formattedDate,
-        ticketPrices: data.ticketPrices || {}
+        ticketPrices: data.ticketPrices || {},
+        ticketSold: data.ticketSold || {
+          northSeats: 0,
+          eastSeats: 0,
+          southSeats: 0,
+          westSeats: 0,
+          vipSeats: 0
+        }
       });
     } catch (e) {
       console.log(e);

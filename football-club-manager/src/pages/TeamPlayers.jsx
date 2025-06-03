@@ -29,12 +29,15 @@ function TeamPlayers(){
     }, []);
 
     return(
-        <Container fluid>
-            <h2 className="d-flex justify-content-center">Players of {teamName}</h2>
+        <Container fluid className="py-5 px-3">
+            <h2 className="text-center text-white fw-bold display-5 mb-2">Players of {teamName}</h2>
+            <p className="text-center text-light mb-4 fst-italic">
+              Squad overview and player profiles
+            </p>
             <Row className="g-4 justify-content-center">
                 {Array.isArray(teamPlayers) && teamPlayers.map(player => (
-                    <Col key = {player.playerId} className="d-flex justify-content-center" xs={12} sm={6} md={4} lg={3}>
-                        <PlayerCard key = {player.playerId} player={player} />
+                    <Col key={player.playerId} className="d-flex justify-content-center" xs={12} sm={6} md={4} lg={3}>
+                        <PlayerCard player={player} />
                     </Col>
                 ))}
             </Row>

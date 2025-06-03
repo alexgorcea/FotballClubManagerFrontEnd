@@ -4,7 +4,7 @@ import api from '../api/axiosConfig';
 import Container from 'react-bootstrap/Container';
 import { useNavigate } from 'react-router-dom';
 
-function  CreateMatch(){
+function CreateMatch() {
   const [match, setMatch] = useState({
     homeTeamId: '',
     awayTeamId: '',
@@ -17,6 +17,13 @@ function  CreateMatch(){
       southSeats: '',
       westSeats: '',
       vipSeats: ''
+    },
+    ticketsSold: {
+      northSeats: 0,
+      eastSeats: 0,
+      southSeats: 0,
+      westSeats: 0,
+      vipSeats: 0
     }
   });
 
@@ -47,6 +54,11 @@ function  CreateMatch(){
           [name]: parseInt(value)
         }
       }));
+    } else if (name === 'prize') {
+      setMatch(prev => ({
+        ...prev,
+        prize: parseFloat(value)
+      }));
     } else {
       setMatch(prev => ({
         ...prev,
@@ -58,6 +70,7 @@ function  CreateMatch(){
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      console.log("Creating match with data:", match); // 👈 debug log
       await api.post('/matches/add', match);
       alert('Match created successfully!');
       navigate('/matches');
@@ -66,6 +79,7 @@ function  CreateMatch(){
       alert('Failed to create match.');
     }
   };
+
 
   return (
     <Container>

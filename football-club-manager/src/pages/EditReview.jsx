@@ -111,22 +111,6 @@ function EditReview() {
 
                 <hr className="border-light" />
 
-                <Row>
-                    <Col>
-                        <h5 className="text-center mb-3">Spectators</h5>
-                        {Object.keys(formData.spectators).map(key => (
-                            <Form.Group className="mb-2" key={key}>
-                                <Form.Label>{formatLabel(key)}</Form.Label>
-                                <Form.Control
-                                    type="number"
-                                    value={formData.spectators[key]}
-                                    onChange={(e) => handleChange('spectators', key, e.target.value)}
-                                />
-                            </Form.Group>
-                        ))}
-                    </Col>
-                </Row>
-
                 <div className="text-center mt-4">
                     <Button type="submit" variant="primary" className="px-4">
                         Update Review

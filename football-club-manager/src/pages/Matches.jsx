@@ -24,13 +24,18 @@ function Matches(){
     },[])
 
     return(
-        <Container fluid>
-            <h2 className="d-flex justify-content-center">Matches</h2>
-            <Button href="/matches/create">Create</Button>
+        <Container fluid className="py-5 px-3">
+            <h2 className="text-center text-white fw-bold display-5 mb-2">Matches</h2>
+            <p className="text-center text-light mb-4 fst-italic">
+              View upcoming and past matches from LaLiga.
+            </p>
+            <div className="text-center mb-4">
+              <Button href="/matches/create" variant="primary">Create Match</Button>
+            </div>
             <Row className="g-4 justify-content-center">
                 {Array.isArray(matches) && matches.map(match => (
-                    <Col key = {match.matchId} className="d-flex justify-content-center" xs={12} sm={6} md={4} lg={3}>
-                        <MatchCard key = {match.matchId} match={match} />
+                    <Col key={match.matchId} className="d-flex justify-content-center" xs={12} sm={6} md={4} lg={3}>
+                        <MatchCard match={match} />
                     </Col>
                 ))}
             </Row>

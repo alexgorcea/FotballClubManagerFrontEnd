@@ -29,7 +29,11 @@ function Details(){
     },[]);
 
     return(
-        <Container className="my-5" fluid>
+        <Container className="py-5 px-3" fluid>
+            <h2 className="text-center text-white fw-bold display-5 mb-2">{player?.name}</h2>
+            <p className="text-center text-light mb-4 fst-italic">
+              Player profile, rankings and market evolution
+            </p>
             <Row className="g-4 justify-content-center">
                 <Col xs="auto">
                     <PlayerDetailsCard player={player} />

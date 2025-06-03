@@ -23,6 +23,7 @@ function Header() {
             <Nav.Link href="/" className="text-light">Home</Nav.Link>
             <Nav.Link href="/teams" className="text-light">Teams</Nav.Link>
             <Nav.Link href="/matches" className="text-light">Matches</Nav.Link>
+            <Nav.Link href="/cart" className="text-light">Cart</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>

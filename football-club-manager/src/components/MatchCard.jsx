@@ -35,6 +35,12 @@ function MatchCard({ match }) {
     awayTeam
   };
 
+  const matchDetails = {
+    homeTeam,
+    awayTeam,
+    match
+  }
+
   const deleteMatch = async () => {
     if (!window.confirm("Are you sure you want to delete this match?")) return;
 
@@ -103,7 +109,7 @@ function MatchCard({ match }) {
             )
           ) : (
             <>
-              <Button variant="outline-primary" as={Link} to={`/matches/edit/${match.matchId}`}>Buy Tickets</Button>
+              <Button variant="outline-primary" as={Link} to={`/matches/tickets/${match.matchId}`} state={{matchDetails}}>Buy Tickets</Button>
               <Button variant="outline-secondary" as={Link} to={`/matches/edit/${match.matchId}`}>Edit Match</Button>
               <Button variant="outline-danger" onClick={deleteMatch}>Delete Match</Button>
             </>

@@ -13,8 +13,12 @@ import EditMatch from './pages/EditMatch';
 import Review from './pages/Review';
 import CreateReview from './pages/CreateReview';
 import EditReview from './pages/EditReview';
-import StadiumCard from './components/StadiumCard';
+import Tickets from './pages/Tickets';
+import ShoppingCart from './pages/ShoppingCart';
+import { CartProvider } from './pages/CartContext';
 import '../index.css'
+
+
 
 const router = createBrowserRouter([
   {
@@ -67,7 +71,11 @@ const router = createBrowserRouter([
       },
       {
         path : "matches/tickets/:matchId",
-        element : <StadiumCard />
+        element : <Tickets />
+      },
+      {
+        path: "cart",
+        element : <ShoppingCart />
       }
     
     ]
@@ -78,6 +86,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router} />
+    <CartProvider>
+      <RouterProvider router={router} />
+    </CartProvider>
   </StrictMode>
 )
