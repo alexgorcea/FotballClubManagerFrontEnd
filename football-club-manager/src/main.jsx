@@ -5,19 +5,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './pages/Home'
 import Teams from './pages/Teams'
 import Layout from './layout/Layout'
-import TeamPlayers from './pages/TeamPlayers';
-import Details from './pages/Details';
-import Matches from './pages/Matches';
-import CreateMatch from './pages/CreateMatch';
-import EditMatch from './pages/EditMatch';
-import Review from './pages/Review';
-import CreateReview from './pages/CreateReview';
-import EditReview from './pages/EditReview';
+import TeamPlayers from './pages/Players/TeamPlayers';
+import Details from './pages/Players/Details';
+import Matches from './pages/Matches/Matches';
+import CreateMatch from './pages/Matches/CreateMatch';
+import EditMatch from './pages/Matches/EditMatch';
+import Review from './pages/Reviews/Review';
+import CreateReview from './pages/Reviews/CreateReview';
+import EditReview from './pages/Reviews/EditReview';
 import Tickets from './pages/Tickets';
 import ShoppingCart from './pages/ShoppingCart';
-import { CartProvider } from './pages/CartContext';
+import { CartProvider } from './context/CartContext';
+import { AuthProvider } from './context/AuthContext';
+import Login from './pages/Authentication/Login';
+import Register from './pages/Authentication/Register';
+import ProtectedRoutes from './components/ProtectedRoutes';
 import '../index.css'
-
 
 
 const router = createBrowserRouter([
@@ -32,50 +35,64 @@ const router = createBrowserRouter([
 
       {
         path : "teams",
-        element : <Teams />
-
+        element : <ProtectedRoutes><Teams /></ProtectedRoutes>
       },
 
       {
         path : "teams/:teamId",
-        element : <TeamPlayers/>
+        element : <ProtectedRoutes><TeamPlayers/></ProtectedRoutes>
       },
 
       {
         path : "players/:playerId",
-        element : <Details />
+        element : <ProtectedRoutes><Details /></ProtectedRoutes>
       },
+
       {
         path : "matches",
-        element : <Matches /> 
+        element : <ProtectedRoutes><Matches /> </ProtectedRoutes>
       },
       {
         path : "matches/create",
-        element : <CreateMatch />
+        element : <ProtectedRoutes><CreateMatch /></ProtectedRoutes>
       },
+
       {
         path : "matches/edit/:matchId",
-        element : <EditMatch />
+        element : <ProtectedRoutes><EditMatch /></ProtectedRoutes>
       },
+
       {
         path : "review/:matchId",
-        element : <Review />
+        element : <ProtectedRoutes><Review /></ProtectedRoutes>
       },
+
       {
         path : "review/createReview/:matchId",
-        element : <CreateReview />
+        element : <ProtectedRoutes><CreateReview /></ProtectedRoutes>
       },
+
       {
         path : "review/editReview/:matchId",
-        element : <EditReview />
+        element : <ProtectedRoutes><EditReview /></ProtectedRoutes>
       },
+
       {
         path : "matches/tickets/:matchId",
-        element : <Tickets />
+        element : <ProtectedRoutes><Tickets /></ProtectedRoutes>
+      },
+
+      {
+        path : "cart",
+        element : <ProtectedRoutes><ShoppingCart /></ProtectedRoutes>
       },
       {
-        path: "cart",
-        element : <ShoppingCart />
+        path : "register",
+        element : <Register />
+      },
+      {
+        path : "login",
+        element : <Login />
       }
     
     ]
@@ -86,8 +103,10 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <CartProvider>
-      <RouterProvider router={router} />
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
+    </AuthProvider>
   </StrictMode>
 )

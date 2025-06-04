@@ -1,5 +1,5 @@
 import { Card, ListGroup, Button } from 'react-bootstrap';
-import { useCart } from './CartContext';
+import { useCart } from '../context/CartContext';
 
 function ShoppingCart() {
   const { cart, removeFromCart, clearCart } = useCart();

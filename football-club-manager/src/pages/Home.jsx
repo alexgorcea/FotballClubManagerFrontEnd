@@ -1,5 +1,15 @@
-function Home (){
-    return <h1>Home Page</h1>
-}
+import { Container } from 'react-bootstrap';
+import { useAuth } from '../context/AuthContext';
 
-export default Home
+const Home = () => {
+  const { user } = useAuth();
+
+  return (
+    <Container className="mt-5">
+      <h1>Home Page</h1>
+      {user && <h4>Bun venit, {user}!</h4>}
+    </Container>
+  );
+};
+
+export default Home;

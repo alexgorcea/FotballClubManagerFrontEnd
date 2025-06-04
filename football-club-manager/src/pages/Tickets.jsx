@@ -2,7 +2,7 @@ import api from '../api/axiosConfig';
 import { useLocation } from 'react-router-dom';
 import StadiumCard from '../components/StadiumCard';
 import { Card, Container, Row, Col, ListGroup, Image } from 'react-bootstrap';
-import { useCart } from './CartContext';
+import { useCart } from '../context/CartContext';
 
 function Tickets() {
   const { cart, addToCart } = useCart();
