@@ -9,8 +9,11 @@ export function AuthProvider({ children }){
 
   const fetchUser = async () => {
     try {
-      const res = await api.get('/auth/me');
-      setUser(res.data.username);
+      const response = await api.get('/auth/me');
+      setUser({
+        username: response.data.username,
+        roles: response.data.roles,
+      });
     } catch {
       setUser(null);
     }finally {

@@ -7,7 +7,7 @@ const Home = () => {
   return (
     <Container className="mt-5">
       <h1>Home Page</h1>
-      {user && <h4>Bun venit, {user}!</h4>}
+      {user && <h4>Bun venit, {user.username}!</h4>}
     </Container>
   );
 };

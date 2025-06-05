@@ -4,11 +4,13 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import MatchCard from "../../components/MatchCard";
+import {useAuth} from "../../context/AuthContext";
 import { Button } from "react-bootstrap";
 
 function Matches(){
 
     const [matches,setMatches] = useState();
+    const {user} = useAuth();
 
     const getMatches = async () => {
         try{
@@ -29,9 +31,11 @@ function Matches(){
             <p className="text-center text-light mb-4 fst-italic">
               View upcoming and past matches from LaLiga.
             </p>
-            <div className="text-center mb-4">
+            {user?.roles?.includes("ROLE_ADMIN") && (
+                <div className="text-center mb-4">
               <Button href="/matches/create" variant="primary">Create Match</Button>
             </div>
+            )}
             <Row className="g-4 justify-content-center">
                 {Array.isArray(matches) && matches.map(match => (
                     <Col key={match.matchId} className="d-flex justify-content-center" xs={12} sm={6} md={4} lg={3}>

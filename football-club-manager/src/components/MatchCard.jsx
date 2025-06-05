@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react';
 import { Card, ListGroup, Stack, Row, Col, Image, Button } from 'react-bootstrap';
 import api from '../api/axiosConfig';
 import { Link } from 'react-router-dom';
+import { useAuth } from "../context/AuthContext";
 
 function MatchCard({ match }) {
   const [homeTeam, setHomeTeam] = useState();
   const [awayTeam, setAwayTeam] = useState();
+
+  const { user } = useAuth();
 
   const getHomeTeam = async () => {
     try {
@@ -102,16 +105,24 @@ function MatchCard({ match }) {
       <Card.Body>
         <Stack gap={2}>
           {hasPassed ? (
-            match.reviewId ? (
-              <Button variant="outline-primary" as={Link} to={`/review/${match.matchId}`} state={{ matchTeams }}>View Review</Button>
-            ) : (
-              <Button variant="outline-primary" as={Link} to={`/review/createReview/${match.matchId}`} state={{ matchTeams }}>Create Review</Button>
-            )
+            user?.roles?.includes("ROLE_ADMIN") ? (
+              match.reviewId ? (
+
+                <Button variant="outline-primary" as={Link} to={`/review/${match.matchId}`} state={{ matchTeams }}>View Review</Button>
+              ) : (
+                <Button variant="outline-primary" as={Link} to={`/review/createReview/${match.matchId}`} state={{ matchTeams }}>Create Review</Button>
+              )
+            ) : null
           ) : (
             <>
-              <Button variant="outline-primary" as={Link} to={`/matches/tickets/${match.matchId}`} state={{matchDetails}}>Buy Tickets</Button>
-              <Button variant="outline-secondary" as={Link} to={`/matches/edit/${match.matchId}`}>Edit Match</Button>
-              <Button variant="outline-danger" onClick={deleteMatch}>Delete Match</Button>
+              {user?.roles?.includes("ROLE_ADMIN") ? (
+                <>
+                  <Button variant="outline-secondary" as={Link} to={`/matches/edit/${match.matchId}`}>Edit Match</Button>
+                  <Button variant="outline-danger" onClick={deleteMatch}>Delete Match</Button>
+                </>
+              ) : (
+                <Button variant="outline-primary" as={Link} to={`/matches/tickets/${match.matchId}`} state={{ matchDetails }}>Buy Tickets</Button>
+              )}
             </>
           )}
         </Stack>
