@@ -82,6 +82,7 @@ function CreateMatch() {
 
   return (
     <Container>
+      <Button variant="secondary" onClick={() => navigate('/matches')}>← Back</Button>
       <Card className="shadow-sm mx-auto p-4" style={{ maxWidth: '600px' }}>
         <h3 className="text-center mb-4">Create New Match</h3>
         <Form onSubmit={handleSubmit}>

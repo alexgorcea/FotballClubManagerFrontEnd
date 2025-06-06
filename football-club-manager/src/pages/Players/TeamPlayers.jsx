@@ -3,14 +3,16 @@ import api from '../../api/axiosConfig';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Button from 'react-bootstrap/Button';
 import PlayerCard from '../../components/PlayerCard';
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 
 function TeamPlayers(){
     const [teamPlayers,setTeamPlayers] = useState();
 
     const {teamId} = useParams();
 
+    const navigate = useNavigate();
     const location = useLocation();
     const teamName = new URLSearchParams(location.search).get('teamName');
 
@@ -30,6 +32,7 @@ function TeamPlayers(){
 
     return(
         <Container fluid className="py-5 px-3">
+            <Button variant="secondary" onClick={() => navigate('/teams')}>← Back to Teams</Button>
             <h2 className="text-center text-white fw-bold display-5 mb-2">Players of {teamName}</h2>
             <p className="text-center text-light mb-4 fst-italic">
               Squad overview and player profiles

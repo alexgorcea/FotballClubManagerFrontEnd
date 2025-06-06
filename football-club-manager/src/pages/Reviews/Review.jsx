@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
-import { Card, ListGroup, Badge, Row, Col, Image, Button } from 'react-bootstrap';
+import { Card, ListGroup, Badge, Row, Col, Image, Button, Container } from 'react-bootstrap';
 import api from '../../api/axiosConfig';
 
 function Review() {
@@ -42,7 +42,8 @@ function Review() {
   if (!review) return <p>Loading review...</p>;
 
   return (
-    <>
+    <Container>
+      <Button variant="secondary" onClick={() => navigate('/matches')}>← Back</Button>
       <Card className="m-4 shadow-sm rounded-4 border-0 mx-auto custom-dark-card" style={{ maxWidth: '900px' }}>
         <Card.Header className="bg-secondary text-white fs-5 fw-semibold text-center rounded-top-4">
           Match Review
@@ -109,7 +110,7 @@ function Review() {
           </div>
         </Card.Body>
       </Card>
-    </>
+    </Container>
   );
 }
 

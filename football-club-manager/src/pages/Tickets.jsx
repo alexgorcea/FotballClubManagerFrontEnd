@@ -1,12 +1,13 @@
 import api from '../api/axiosConfig';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import StadiumCard from '../components/StadiumCard';
-import { Card, Container, Row, Col, ListGroup, Image } from 'react-bootstrap';
+import { Card, Container, Row, Col, ListGroup, Image, Button } from 'react-bootstrap';
 import { useCart } from '../context/CartContext';
 
 function Tickets() {
   const { cart, addToCart } = useCart();
 
+  const navigate = useNavigate();
   const location = useLocation();
   const matchDetails = location.state?.matchDetails;
   const homeTeam = matchDetails.homeTeam;
@@ -49,6 +50,7 @@ function Tickets() {
 
   return (
     <Container fluid className="py-5 px-3 tickets-section">
+      <Button variant="secondary" onClick={() => navigate('/matches')}>← Back to Matches</Button>
       <h2 className="text-center text-white fw-bold display-5 mb-2">Buy Tickets</h2>
       <p className="text-center text-light mb-4 fst-italic">
         Select your seats and enjoy the match!

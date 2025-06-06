@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
-import { Form, Button, Card, Row, Col } from 'react-bootstrap';
+import { Form, Button, Card, Row, Col, Container } from 'react-bootstrap';
 import api from '../../api/axiosConfig';
 
 function CreateReview() {
@@ -44,47 +44,47 @@ function CreateReview() {
     }
   };
 
-  const formatLabel = (label) => label.replace(/([a-z])([A-Z])/g, '$1 $2').replace(/\b\w/g, char => char.toUpperCase());
-
-
   return (
-    <Card className="shadow-sm mx-auto p-4" style={{ maxWidth: '600px' }}>
-      <Card.Title className="fs-4 fw-bold text-center mb-4">
-        Create Review
-      </Card.Title>
+    <Container>
+      <Button variant="secondary" onClick={() => navigate('/matches')}>← Back</Button>
+      <Card className="shadow-sm mx-auto p-4" style={{ maxWidth: '600px' }}>
+        <Card.Title className="fs-4 fw-bold text-center mb-4">
+          Create Review
+        </Card.Title>
 
-      <Form onSubmit={handleSubmit}>
-        <Row>
-          <Col>
-            <Form.Group className="mb-3">
-              <Form.Label>{matchTeams.homeTeam.name} Score</Form.Label>
-              <Form.Control
-                type="number"
-                value={formData.homeTeamScore}
-                onChange={(e) => handleChange(null, 'homeTeamScore', e.target.value)}
-              />
-            </Form.Group>
+        <Form onSubmit={handleSubmit}>
+          <Row>
+            <Col>
+              <Form.Group className="mb-3">
+                <Form.Label>{matchTeams.homeTeam.name} Score</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={formData.homeTeamScore}
+                  onChange={(e) => handleChange(null, 'homeTeamScore', e.target.value)}
+                />
+              </Form.Group>
 
-            <Form.Group className="mb-3">
-              <Form.Label>{matchTeams.awayTeam.name} Score</Form.Label>
-              <Form.Control
-                type="number"
-                value={formData.awayTeamScore}
-                onChange={(e) => handleChange(null, 'awayTeamScore', e.target.value)}
-              />
-            </Form.Group>
-          </Col>
-        </Row>
+              <Form.Group className="mb-3">
+                <Form.Label>{matchTeams.awayTeam.name} Score</Form.Label>
+                <Form.Control
+                  type="number"
+                  value={formData.awayTeamScore}
+                  onChange={(e) => handleChange(null, 'awayTeamScore', e.target.value)}
+                />
+              </Form.Group>
+            </Col>
+          </Row>
 
-        <hr className="border-light" />
+          <hr className="border-light" />
 
-        <div className="text-center mt-4">
-          <Button type="submit" variant="primary" className="px-4">
-            Submit Review
-          </Button>
-        </div>
-      </Form>
-    </Card>
+          <div className="text-center mt-4">
+            <Button type="submit" variant="primary" className="px-4">
+              Submit Review
+            </Button>
+          </div>
+        </Form>
+      </Card>
+    </Container>
   );
 }
 
