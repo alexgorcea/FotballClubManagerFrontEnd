@@ -39,7 +39,9 @@ function Header() {
               <>
                 <Nav.Link href="/teams" className="text-light">Teams</Nav.Link>
                 <Nav.Link href="/matches" className="text-light">Matches</Nav.Link>
-                <Nav.Link href="/cart" className="text-light">Cart</Nav.Link>
+                {user.roles?.includes("ROLE_CLIENT") && (
+                  <Nav.Link href="/cart" className="text-light">Cart</Nav.Link>
+                ) }
                 <Nav.Link onClick={handleLogout} className="text-light" style={{ cursor: 'pointer' }}>Logout</Nav.Link>
               </>
             ) : (

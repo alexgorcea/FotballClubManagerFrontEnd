@@ -71,15 +71,6 @@ const Register = () => {
               required
             />
           </Form.Group>
-          <Form.Group className="mb-3">
-            <Form.Check
-              type="checkbox"
-              name="isAdmin"
-              checked={formData.isAdmin}
-              onChange={handleChange}
-              label="Înregistrează-te ca administrator"
-            />
-          </Form.Group>
           <Button variant="success" type="submit" className="w-100">Înregistrează-te</Button>
         </Form>
       </Card>
