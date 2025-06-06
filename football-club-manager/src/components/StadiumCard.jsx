@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Button, Card, Row, Col, Image, OverlayTrigger, Popover, Form } from 'react-bootstrap';
 import pitchImage from '../assets/pitch.jpg';
 
-function StadiumCard({onBuy, ticketPrices}) {
+function StadiumCard({ matchId, onBuy, ticketPrices }) {
   const [selectedTribune, setSelectedTribune] = useState(null);
   const [ticketCount, setTicketCount] = useState(1);
 
@@ -13,7 +13,7 @@ function StadiumCard({onBuy, ticketPrices}) {
 
   const handleConfirm = (name, price) => {
     if (ticketCount > 0) {
-      onBuy(name, ticketCount, price);
+      onBuy(matchId, name, ticketCount, price);
       setSelectedTribune(null);
     }
   };
@@ -28,10 +28,13 @@ function StadiumCard({onBuy, ticketPrices}) {
             type="number"
             min={1}
             value={ticketCount}
-            onChange={(e) => setTicketCount(parseInt(e.target.value))}
+            onChange={(e) => {
+              const value = parseInt(e.target.value);
+              setTicketCount(isNaN(value) ? 1 : value);
+            }}
           />
         </Form.Group>
-        <Button variant="success" size="sm" onClick={() => handleConfirm(name,price)}>Confirm</Button>
+        <Button variant="success" size="sm" onClick={() => handleConfirm(name, price)}>Confirm</Button>
       </Popover.Body>
     </Popover>
   );
@@ -40,7 +43,7 @@ function StadiumCard({onBuy, ticketPrices}) {
       <Card.Body>
         <Row className="justify-content-center mb-2">
           <Col>
-            <OverlayTrigger trigger="click" placement="right" overlay={renderPopover('North',ticketPrices.northSeats)} show={selectedTribune === 'North'}  onToggle={() => handleSelect('North')} rootClose>
+            <OverlayTrigger trigger="click" placement="right" overlay={renderPopover('North', ticketPrices.northSeats)} show={selectedTribune === 'North'} onToggle={() => handleSelect('North')} rootClose>
               <Button className="trapezoid-horizontal"></Button>
             </OverlayTrigger>
           </Col>
@@ -48,7 +51,7 @@ function StadiumCard({onBuy, ticketPrices}) {
 
         <Row className="align-items-center gx-0">
           <Col xs={3} md={3} className="d-flex justify-content-center">
-            <OverlayTrigger trigger="click" placement="top" overlay={renderPopover('West',ticketPrices.westSeats)} show={selectedTribune === 'West'}  onToggle={() => handleSelect('West')} rootClose>
+            <OverlayTrigger trigger="click" placement="top" overlay={renderPopover('West', ticketPrices.westSeats)} show={selectedTribune === 'West'} onToggle={() => handleSelect('West')} rootClose>
               <Button className="trapezoid-vertical rotate-left"></Button>
             </OverlayTrigger>
           </Col>
@@ -56,7 +59,7 @@ function StadiumCard({onBuy, ticketPrices}) {
             <Image src={pitchImage} alt="football field" style={{ width: '100%', height: 'auto', maxWidth: '300px' }} />
           </Col>
           <Col xs={3} md={3} className="d-flex justify-content-center">
-            <OverlayTrigger trigger="click" placement="right" overlay={renderPopover('East',ticketPrices.eastSeats)} show={selectedTribune === 'East'}  onToggle={() => handleSelect('East')} rootClose>
+            <OverlayTrigger trigger="click" placement="right" overlay={renderPopover('East', ticketPrices.eastSeats)} show={selectedTribune === 'East'} onToggle={() => handleSelect('East')} rootClose>
               <Button className="trapezoid-vertical rotate-right"></Button>
             </OverlayTrigger>
           </Col>
@@ -64,14 +67,14 @@ function StadiumCard({onBuy, ticketPrices}) {
 
         <Row className="justify-content-center mt-2">
           <Col>
-            <OverlayTrigger trigger="click" placement="right" overlay={renderPopover('South',ticketPrices.southSeats)} show={selectedTribune === 'South'}  onToggle={() => handleSelect('South')} rootClose>
+            <OverlayTrigger trigger="click" placement="right" overlay={renderPopover('South', ticketPrices.southSeats)} show={selectedTribune === 'South'} onToggle={() => handleSelect('South')} rootClose>
               <Button className="trapezoid-horizontal rotate-down"></Button>
             </OverlayTrigger>
           </Col>
         </Row>
         <Row className="justify-content-center mt-2">
           <Col>
-            <OverlayTrigger trigger="click" placement="bottom" overlay={renderPopover('VIP',ticketPrices.vipSeats)} show={selectedTribune === 'Vip'}  onToggle={() => handleSelect('Vip')} rootClose>
+            <OverlayTrigger trigger="click" placement="bottom" overlay={renderPopover('VIP', ticketPrices.vipSeats)} show={selectedTribune === 'VIP'} onToggle={() => handleSelect('VIP')} rootClose>
               <Button className="vip-class"></Button>
             </OverlayTrigger>
           </Col>

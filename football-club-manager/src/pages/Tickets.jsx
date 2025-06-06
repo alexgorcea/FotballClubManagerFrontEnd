@@ -15,9 +15,8 @@ function Tickets() {
 
   const formattedDate = matchDate.toLocaleDateString();
 
-  const handleAddToCart = async (tribune, quantity, price) => {
-    addToCart(tribune, quantity, price);
-
+  const handleAddToCart = async (matchId, tribune, quantity, price) => {
+    addToCart(matchId, tribune, quantity, price);
     const tribuneKey = tribune.toLowerCase() + 'Seats';
 
     const updatedMatch = { ...matchDetails.match };
@@ -35,6 +34,12 @@ function Tickets() {
 
     try {
       await api.post(`/matches/edit/${updatedMatch.matchId}`, updatedMatch);
+      await api.post('/tickets/buy', {
+        matchId,
+        seat: tribune,
+        quantity,
+        price,
+      });
     } catch (err) {
       console.error('Failed to update match:', err);
     }
@@ -90,7 +95,11 @@ function Tickets() {
 
       <Row className="justify-content-center mb-4">
         <Col md={6} className="mx-auto">
-          <StadiumCard onBuy={handleAddToCart} ticketPrices={matchDetails.match.ticketPrices} />
+          <StadiumCard
+            matchId={matchDetails.match.matchId}
+            ticketPrices={matchDetails.match.ticketPrices}
+            onBuy={handleAddToCart}
+          />
         </Col>
       </Row>
 
